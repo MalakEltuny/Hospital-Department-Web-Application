@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Patients Database</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="../static/Css/Admin.css" rel="stylesheet" />
+        <link href="https://unpkg.com/tabulator-tables@5.3.0/dist/css/tabulator.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.3.0/dist/js/tabulator.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="/Home">SMARTCARE HOSPITAL</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Data Analysis</div>
+                            <a class="nav-link" href="/Admin_Charts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Charts
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Users</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-doctor fa-fw"></i></div>
+                                Doctors
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/Admin_Doctors_Database">
+                                      <div><i class="fas fa-table"></i>-Database</div>
+                                    </a>
+                                    <a class="nav-link" href="/Admin_Doctors_Database">
+                                      <div><i class="fas fa-user-plus"></i>-Add</div>
+                                    </a>
+                                    <a class="nav-link" href="/Admin_Doctors_Database">
+                                      <div><i class="fas fa-user-minus"></i>-Remove</div>
+                                    </a>
+                                    <a class="nav-link" href="/Admin_Doctors_Database">
+                                      <div><i class="fas fa-pen-to-square"></i>-Edit</div>
+                                    </a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-hospital-user fa-fw"></i></div>
+                                Patients
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="">
+                                      <div><i class="fas fa-table"></i>-Database</div>
+                                    </a>
+                                    <a class="nav-link" href="">
+                                      <div><i class="fas fa-user-plus"></i>-Add</div>
+                                    </a>
+                                    <a class="nav-link" href="">
+                                      <div><i class="fas fa-user-minus"></i>-Remove</div>
+                                    </a>
+                                    <a class="nav-link" href="">
+                                      <div><i class="fas fa-pen-to-square"></i>-Edit</div>
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Users</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Patients</li>
+                        </ol>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Patients Database
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>DID</th>
+                                            <th>PID</th>
+                                            <th>SSN</th>
+                                            <th>F-Name</th>
+                                            <th>L-Name</th>
+                                            <th>Email</th>
+                                            <th>Password</th>
+                                            <th>Address</th>
+                                            <th>Birthdate</th>
+                                            <th>Gender</th>
+                                            <th>Phone</th>
+                                            <th>Medical History</th>
+                                            <th>Medical Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for data in patients_table %}
+                                            <tr>
+                                                <td>{{ data[0] }}</td>
+                                                <td>{{ data[1] }}</td>
+                                                <td>{{ data[2] }}</td>
+                                                <td>{{ data[3] }}</td>
+                                                <td>{{ data[4] }}</td>
+                                                <td>{{ data[5] }}</td>
+                                                <td>{{ data[6] }}</td>
+                                                <td>{{ data[7] }}</td>
+                                                <td>{{ data[8] }}</td>
+                                                <td>{{ data[9] }}</td>
+                                                <td>{{ data[10] }}</td>
+                                                <td>{{ data[11] }}</td>
+                                                <td>{{ data[12] }}</td>
+                                                <td>{{ data[13] }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-user-plus me-1"></i>
+                                Add-Patient
+                            </div>
+                            {% if admin_adding_warning=="Patient already exits in the database!" or admin_adding_warning=="Please enter a valid patient SSN!"%}
+                              <div class="card-body">
+                                <div class="alert alert-warning">{{ admin_adding_warning }}</div>
+                              </div>
+                            {% elif admin_adding_warning=="You have successfully added a new patient to the database!" %}
+                                <div class="card-body">
+                                    <div class="alert alert-success">{{ admin_adding_warning }}</div>
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                              <form action="/Admin_Add_Patient" method="post">
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-SSN"><b>SSN</b></label>
+                                    <input type="number" name="Patient-SSN" required class="form-control2" id="Patient-SSN" placeholder="SSN" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-FName"><b>First Name</b></label>
+                                    <input type="text" name="Patient-FName" required class="form-control2" id="Patient-FName" placeholder="First Name" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-LName"><b>Last Name</b></label>
+                                    <input type="text" name="Patient-LName" required class="form-control2" id="Patient-LName" placeholder="Last Name" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Email"><b>Email</b></label>
+                                    <input type="email" name="Patient-Email" required class="form-control2" id="Patient-Email" placeholder="Email">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Password"><b>Password</b></label>
+                                    <input type="text" name="Patient-Password" required class="form-control2" id="Patient-Password" placeholder="Password">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Address"><b>Address</b></label>
+                                    <input type="text" name="Patient-Address" required class="form-control2" id="Patient-Address" placeholder="Address" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Birthdate"><b>Birthdate</b></label>
+                                    <input type="date" name="Patient-Birthdate" required class="form-control2" id="Patient-Birthdate" placeholder="Birthdate" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Gender"><b>Gender</b></label>
+                                        <select name="Patient-Gender" id="Patient-Gender" class="form-control2">
+                                          <option value="M">M</option>
+                                          <option value="F">F</option>
+                                        </select>
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Phone"><b>Phone Number</b></label>
+                                    <input type="tel" name="Patient-Phone" required class="form-control2" id="Patient-Phone" placeholder="Phone Number" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Medical-Status"><b>Medical Status</b></label>
+                                    <input type="text" name="Patient-Medical-Status" class="form-control2" id="Patient-Medical-Status" placeholder="Medical Status" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Medical-History"><b>Medical History</b></label>
+                                    <input type="text" name="Patient-Medical-History" class="form-control2" id="Patient-Medical-History" placeholder="Medical History" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Patient-Doctor-ID"><b>Doctor ID</b></label>
+                                        <select name="Patient-Doctor-ID" id="Patient-Doctor-ID" class="form-control2">
+                                         {% for id in doctors_ids %}
+                                          <option value="{{ id[0] }}">{{ id[0] }}</option>
+                                          {% endfor %}
+                                        </select>
+                                  </div>
+                                </div>
+                                <div class="btn-box">
+                                  <button type="submit" class="btn ">Add</button>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-pen-to-square me-1"></i>
+                                Edit-Patient
+                            </div>
+                            {% if admin_adding_warning=="Please enter a valid patient email!"%}
+                              <div class="card-body">
+                                <div class="alert alert-warning">{{ admin_adding_warning }}</div>
+                              </div>
+                            {% elif admin_adding_warning=="You have successfully edited patient data in the database!" %}
+                                <div class="card-body">
+                                    <div class="alert alert-success">{{ admin_adding_warning }}</div>
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                              <form action="/Admin_Edit_Patient" method="post">
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="To-Be-Edited-Patient-Email"><b>Patient Email</b></label>
+                                        <select name="To-Be-Edited-Patient-Email" id="To-Be-Edited-Patient-Email" class="form-control2">
+                                         {% for email in patients_emails %}
+                                          <option value="{{ email[0] }}">{{ email[0] }}</option>
+                                          {% endfor %}
+                                        </select>
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-FName"><b>First Name</b></label>
+                                    <input type="text" name="Edited-Patient-FName" class="form-control2" id="Edited-Patient-FName" placeholder="First Name" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-LName"><b>Last Name</b></label>
+                                    <input type="text" name="Edited-Patient-LName" class="form-control2" id="Edited-Patient-LName" placeholder="Last Name" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Password"><b>Password</b></label>
+                                    <input type="text" name="Edited-Patient-Password" class="form-control2" id="Edited-Patient-Password" placeholder="Password">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Address"><b>Address</b></label>
+                                    <input type="text" name="Edited-Patient-Address" class="form-control2" id="Edited-Patient-Address" placeholder="Address" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Birthdate"><b>Birthdate</b></label>
+                                    <input type="date" name="Edited-Patient-Birthdate" class="form-control2" id="Edited-Patient-Birthdate" placeholder="Birthdate" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Gender"><b>Gender</b></label>
+                                        <select name="Edited-Patient-Gender" id="Edited-Patient-Gender" class="form-control2">
+                                          <option value="M">M</option>
+                                          <option value="F">F</option>
+                                        </select>
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Phone"><b>Phone Number</b></label>
+                                    <input type="tel" name="Edited-Patient-Phone" class="form-control2" id="Edited-Patient-Phone" placeholder="Phone Number" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Medical-Status"><b>Medical Status</b></label>
+                                    <input type="text" name="Edited-Patient-Medical-Status" class="form-control2" id="Edited-Patient-Medical-Status" placeholder="Medical Status" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Medical-History"><b>Medical History</b></label>
+                                    <input type="text" name="Edited-Patient-Medical-History" class="form-control2" id="Edited-Patient-Medical-History" placeholder="Medical History" autocomplete="off">
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Doctor-ID"><b>Doctor ID</b></label>
+                                        <select name="Edited-Patient-Doctor-ID" id="Edited-Patient-Doctor-ID" class="form-control2">
+                                         {% for id in doctors_ids %}
+                                          <option value="{{ id[0] }}">{{ id[0] }}</option>
+                                          {% endfor %}
+                                        </select>
+                                  </div>
+                                </div>
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Edited-Patient-Email"><b>Email</b> </label>
+                                    <input type="email" name="Edited-Patient-Email" class="form-control2" id="Edited-Patient-Email" placeholder="New Patient Email">
+                                  </div>
+                                </div>
+                                <div class="btn-box">
+                                  <button type="submit" class="btn ">Edit</button>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-user-minus me-1"></i>
+                                Remove-Patient
+                            </div>
+                            {% if admin_adding_warning=="Please enter a valid email for the patient to be removed!" or admin_adding_warning=="Please enter a valid email" %}
+                              <div class="card-body">
+                                <div class="alert alert-warning">{{ admin_adding_warning }}</div>
+                              </div>
+                            {% elif admin_adding_warning=="You have successfully removed a patient from the database!" %}
+                                <div class="card-body">
+                                    <div class="alert alert-success">{{ admin_adding_warning }}</div>
+                                </div>
+                            {% endif %}
+                            <div class="card-body">
+                              <form action="/Remove_Patient" method="post">
+                                <div class="form-row ">
+                                  <div class="form-group col-lg-4">
+                                    <label for="Removed-Patient-Email"><b>Patient Email</b></label>
+                                        <select name="Removed-Patient-Email" id="Removed-Patient-Email" class="form-control2">
+                                         {% for email in patients_emails %}
+                                          <option value="{{ email[0] }}">{{ email[0] }}</option>
+                                          {% endfor %}
+                                        </select>
+                                  </div>
+                                </div>
+                                <div class="btn-box">
+                                  <button type="submit" class="btn ">Remove</button>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy;Cairo University Faculty of Engineering Credit Hours System, Database Course Fall 2023, Team Number 4</div>
+                            <div>
+                                <span>Privacy Policy</span>
+                                &middot;
+                                <span>Terms &amp; Conditions</span>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../static/JS/Admin.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="../static/JS/Admin%20Charts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </body>
+</html>
